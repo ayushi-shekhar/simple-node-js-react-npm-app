@@ -1,0 +1,21 @@
+name: CI/CD Pipeline
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Set up Docker
+      uses: docker/setup-buildx-action@v1
+    - name: Build and push Docker image
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      run: |
+        docker build -t sample-app .
+        docker tag sample-app:latest ayushi250/sample-app:latest
+        docker push ayushi250/sample-app:latest
