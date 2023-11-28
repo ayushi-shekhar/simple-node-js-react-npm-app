@@ -16,6 +16,6 @@ jobs:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       run: |
-        docker build -t sample-app .
-        docker tag sample-app:latest ayushi250/sample-app:latest
-        docker push ayushi250/sample-app:latest
+        docker build -t private-repo .
+        docker tag private-repo:latest ayushi250/private-repo:latest
+        docker push ayushi250/private-repo:latest
